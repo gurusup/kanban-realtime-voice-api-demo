@@ -1,35 +1,35 @@
-# Prueba de integración de la Realtime Voice API de OpenAI
+# Integration test of OpenAI's Realtime Voice API
 
-## Instalación
+## Installation
 
 ```bash
 yarn
 ```
 
-## Ejecución
+## Execution
 
 ```bash
 yarn dev
 ```
 
-## Uso
+## Usage
 
-En el archivo `index.html` encontrarás el iframe donde se cargará la OpenAI Realtime Console.
+In the `index.html` file, you'll find the iframe where the OpenAI Realtime Console will be loaded.
 
 ```html
 <iframe id="realtime-voice-invisible-iframe" src="http://localhost:3000" style="display: none" allow="microphone"></iframe>
 ```
 
-Este es el repositorio de la WebApp que debes modificar y levantar:
+This is the repository of the WebApp that you need to modify and run:
 `https://github.com/openai/openai-realtime-console`
 
-Por defecto, la WebApp se ejecuta en el puerto 3000. Si es necesario, puedes cambiarlo.
+By default, the WebApp runs on port 3000. You can change it if necessary.
 
-## Cómo funciona
+## How it works
 
-La webapp del kanban cargará la OpenAI Realtime Console en el iframe.
+The kanban webapp will load the OpenAI Realtime Console in the iframe.
 
-El chatbot en tiempo real deberá tener la capacidad de ejecutar funciones y enviar mensajes a esta webapp de la siguiente manera:
+The real-time chatbot should have the ability to execute functions and send messages to this webapp as follows:
 
 ```ts
 // Send a message to the parent window to move a card
@@ -42,7 +42,7 @@ window.parent.postMessage(
 );
 ```
 
-Esta webapp tiene un listener del evento `message` que captura el mensaje enviado por el chatbot y ejecuta la función pertinente (en este caso, mover una tarjeta del kanban).
+This webapp has a listener for the `message` event that captures the message sent by the chatbot and executes the relevant function (in this case, moving a kanban card).
 
 ```ts
 // Add a listener to move the cards when the child iframe sends a "move_card" message
@@ -59,7 +59,7 @@ useEffect(() => {
 }, []);
 ```
 
-De la misma manera, puedes enviar cualquier tipo de mensaje desde la app al chatbot (por ejemplo para iniciar o parar el audio):
+Similarly, you can send any type of message from the app to the chatbot (for example, to start or stop the audio):
 
 ```ts
 const handleMessage = (event: MessageEvent) => {
